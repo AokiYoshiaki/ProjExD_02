@@ -79,8 +79,8 @@ def main():
             dx*=-1
         if not tate:
             dy*=-1
-        if kk_rct.colliderect(bb_rct):  # 練習６
-            kk_img = pg.image.load("ProjExD2023/ex02-20230425/fig/8.png")
+        if kk_rct.colliderect(bb_rct):  # 終了処理
+            kk_img = pg.image.load("ProjExD2023/ex02-20230425/fig/8.png") 
             kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
             screen.blit(kk_img, kk_rct)
             jyoutai=False
