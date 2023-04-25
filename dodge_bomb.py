@@ -63,7 +63,6 @@ def main():
                 if key_lst[k]:#押されているキーが[k]ならなら
                     kk_rct.move_ip(-mv[0],-mv[1])#こうかとんが動く方向を決定する
         screen.blit(bg_img, [0, 0])
-        screen.blit(kk_img, kk_rct)#こうかとんが動く
         if abs(dx)<=10 and tmr%100 is 0:
             if dx<0:
                 dx-=0.1
@@ -80,12 +79,14 @@ def main():
             dx*=-1
         if not tate:
             dy*=-1
-        screen.blit(bb_img, bb_rct)#円を描写させる
         if kk_rct.colliderect(bb_rct):  # 練習６
             kk_img = pg.image.load("ProjExD2023/ex02-20230425/fig/8.png")
             kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
             screen.blit(kk_img, kk_rct)
             jyoutai=False
+        screen.blit(kk_img, kk_rct)#こうかとんが動く
+        screen.blit(bb_img, bb_rct)#円を描写させる
+        
 
         pg.display.update()
         clock.tick(1000)
