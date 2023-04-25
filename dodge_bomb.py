@@ -29,9 +29,7 @@ def main():
     screen = pg.display.set_mode((1600, 900))
     clock = pg.time.Clock()
     bg_img = pg.image.load("ProjExD2023/ex02-20230425/fig/pg_bg.jpg")
-    tatehougaku=-1
-    yokohougaku=0
-    jyoutai=True
+    jyoutai=True#プレイしているかどうか
     kk_img = pg.image.load("ProjExD2023/ex02-20230425/fig/3.png")
     kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
     kk_rct=kk_img.get_rect()#こうかとんrect対応
@@ -46,7 +44,7 @@ def main():
 
     tmr = 0
     
-    while jyoutai:
+    while jyoutai:#プレイしているか
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return 0
@@ -63,7 +61,7 @@ def main():
                 if key_lst[k]:#押されているキーが[k]ならなら
                     kk_rct.move_ip(-mv[0],-mv[1])#こうかとんが動く方向を決定する
         screen.blit(bg_img, [0, 0])
-        if abs(dx)<=10 and tmr%100 is 0:
+        if abs(dx)<=10 and tmr%100 is 0:#スカラーが10以下なら一定時間ごとに0.1加速
             if dx<0:
                 dx-=0.1
             else:
@@ -80,19 +78,19 @@ def main():
         if not tate:
             dy*=-1
         if kk_rct.colliderect(bb_rct):  # 終了処理
-            kk_img = pg.image.load("ProjExD2023/ex02-20230425/fig/8.png") 
+            kk_img = pg.image.load("ProjExD2023/ex02-20230425/fig/8.png") #ゲームオーバーの場合は次の状況を描写せずミス用画像
             kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
             screen.blit(kk_img, kk_rct)
-            jyoutai=False
+            jyoutai=False#プレイしていない状態にする
         screen.blit(kk_img, kk_rct)#こうかとんが動く
         screen.blit(bb_img, bb_rct)#円を描写させる
         
 
         pg.display.update()
         clock.tick(1000)
-    while not jyoutai:
+    while not jyoutai:#プレイしていない状態の
         tmr += 1
-        if tmr>=5000:
+        if tmr>=20000:#tmrが20000になったら完全終了 なるまでこうかとん泣く
             return
         clock.tick(1000)
 
